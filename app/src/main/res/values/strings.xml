@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SmartRoller</string>
+    <string name="single_pair_button">One Pair</string>
+    <string name="double_pair_button">Two Pairs</string>
+    <string name="clear_history">Reset</string>
+    <string name="scroll_down_for_history">Scroll down for history.\nRoll:</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="number_of_rolls_default">Total pairs rolled: 0</string>
+    <string name="activity_history_heading">History</string>
+</resources>

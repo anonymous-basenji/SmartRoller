@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue_tint">#002233</color>
+    <color name="blue_tint_toolbar">#00334d</color>
+    <color name="blue_tint_light">#e6f7ff</color>
+    <color name="blue_tint_light_toolbar">#ccefff</color>
+    <color name="my_dark_primary">#292828</color>
+    <color name="green">#15b36e</color>
+    <color name="darker_green">#119159</color>
+    <color name="text_light">#000000</color>
+    <color name="text_dark">#ffffff</color>
+    <color name="aqua_50">#008395</color>
+</resources>

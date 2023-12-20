@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="55dp"
+    android:layout_marginBottom="65dp"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/dice"
+            style="@style/Widget.SmartRoller.TextView"
+            android:text="0"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="?android:textColorTertiary"
+            android:textColorHighlight="?android:textColorTertiary"
+            android:textColorLink="?android:textColorTertiary"
+            android:textSize="60sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/count"
+            style="@style/Widget.SmartRoller.TextView"
+            android:fontFamily="@font/roboto_mono_regular"
+            android:text="@string/number_of_rolls_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dice" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
