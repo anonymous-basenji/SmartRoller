@@ -1,7 +1,7 @@
 /*
  * Source for adapter: https://blog.mindorks.com/recyclerview-multiple-view-types-in-android/
  */
-//test change
+
 package com.nexdev.smartroller.adapter
 
 import android.content.Context
