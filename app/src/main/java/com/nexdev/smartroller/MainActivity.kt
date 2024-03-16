@@ -59,6 +59,9 @@ open class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
     fun outputSinglePair() {
+        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator // create vibrator
+        vibe.vibrate(30) // vibrate for 30 ms
+
         val currentPair = dice.roll() //generates pair
         myDataset[0].header = "$currentPair" //updates number area to display current pair
         myDataset[0].body = dice.displayCount() //updates count area to display current pair count
@@ -70,13 +73,14 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.add(RollItem(currentPair, 0))
-
-        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator // create vibrator
-        vibe.vibrate(50) // vibrate for 50 ms
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
     fun outputDoublePair() {
+        //vibrates for 30ms
+        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibe.vibrate(30)
+
         val currentFirstPair = dice.roll() //generates first pair
         val currentSecondPair = dice.roll() //generates second pair
 
@@ -90,14 +94,14 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView that stats area changed
 
         RollItemDatasource.add(RollItem(currentFirstPair, currentSecondPair))
-
-        //vibrates for 50ms
-        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibe.vibrate(50)
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
     fun resetStats() {
+        //vibrates for 30ms
+        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibe.vibrate(30)
+
         dice.clear() //resets dice stats
 
         myDataset[0].header = "0" //resets number area to default "0"
@@ -110,9 +114,5 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.clear() // clears roll item datasource for history recyclerview
-
-        //vibrate for 50ms
-        val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        vibe.vibrate(50)
     }
 }

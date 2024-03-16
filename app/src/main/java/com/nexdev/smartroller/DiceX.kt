@@ -40,11 +40,10 @@ class DiceX {
             10
         } else if (prob < 97.222 / 100) {
             11
-        } else if (prob < 100.0 / 100) {
-            12
         } else {
-            0
+            12
         }
+        
         pastRolls[dice] = pastRolls[dice]!! + 1
         updateCount()
         return dice

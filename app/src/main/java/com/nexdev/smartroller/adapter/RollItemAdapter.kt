@@ -15,7 +15,7 @@ import com.nexdev.smartroller.R
 import com.nexdev.smartroller.model.RollItem
 import java.util.LinkedList
 
-class RollItemAdapter(private val context: Context, var list: LinkedList<RollItem>) :
+class RollItemAdapter(private val context: Context, var list: MutableList<RollItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private inner class RollItemViewHolder(rollItemView: View) :
@@ -36,7 +36,13 @@ class RollItemAdapter(private val context: Context, var list: LinkedList<RollIte
 
     @SuppressLint("NotifyDataSetChanged")
     fun addRoll(roll: RollItem) {
+        if(list.size > 100) {
+            list.removeAt(0)
+            notifyDataSetChanged()
+        }
+
         list.add(roll)
+
         notifyDataSetChanged()
     }
     override fun getItemCount(): Int {
