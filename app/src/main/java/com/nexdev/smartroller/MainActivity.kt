@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.nexdev.smartroller.adapter.ItemAdapter
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration.*
 import com.nexdev.smartroller.adapter.RollItemAdapter
 import com.nexdev.smartroller.data.Datasource
 import com.nexdev.smartroller.data.RollItemDatasource
@@ -46,10 +48,20 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
         // initialize buttons in main activity
-        findViewById<Button>(R.id.singlePair).setOnClickListener{ outputSinglePair() }
-        findViewById<Button>(R.id.doublePair).setOnClickListener{ outputDoublePair() }
-        findViewById<Button>(R.id.clearButton).setOnClickListener{ resetStats() }
+        findViewById<Button>(R.id.singlePair).setOnClickListener { outputSinglePair() }
+        findViewById<Button>(R.id.doublePair).setOnClickListener { outputDoublePair() }
+        findViewById<Button>(R.id.clearButton).setOnClickListener { resetStats() }
         findViewById<Button>(R.id.history_button).setOnClickListener { launchHistory() }
+
+        MobileAds.initialize(this) {}
+
+        val requestConfiguration = MobileAds.getRequestConfiguration()
+        val updatedRequestConfiguration = requestConfiguration.toBuilder()
+            .setTagForChildDirectedTreatment(TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+            .setTagForUnderAgeOfConsent(TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE)
+            .build()
+
+        MobileAds.setRequestConfiguration(updatedRequestConfiguration)
     }
 
     private fun launchHistory() {
