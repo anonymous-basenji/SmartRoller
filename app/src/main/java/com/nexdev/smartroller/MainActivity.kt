@@ -42,7 +42,7 @@ open class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val topToolbar: Toolbar = findViewById(R.id.actionBar)
+        val topToolbar: Toolbar = findViewById(R.id.action_bar)
         setSupportActionBar(topToolbar)
 
         // initialize main activity recyclerview
@@ -134,7 +134,7 @@ open class MainActivity : AppCompatActivity() {
         RollItemDatasource.clear() // clears roll item datasource for history recyclerview
     }
 
-    private val adSize: AdSize
+    /*private val adSize: AdSize
         get() {
             val display = windowManager.defaultDisplay
             val outMetrics = DisplayMetrics()
@@ -148,12 +148,12 @@ open class MainActivity : AppCompatActivity() {
 
             val adWidth = (adWidthPixels / density).toInt()
             return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
-        }
+        }*/
     private fun loadBanner() {
         // Create ad view
         val adView = findViewById<AdView>(R.id.banner_ad)
-        adView.setAdSize(adSize)
-        adView.adUnitId = "ca-app-pub-3940256099942544/9214589741"
+        //adView.setAdSize(adSize)
+        //adView.adUnitId = "ca-app-pub-3940256099942544~3347511713"
 
         // Create ad request
         val adRequest = AdRequest.Builder().build()

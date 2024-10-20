@@ -1,2 +1,2 @@
 Release banner ad ID: ca-app-pub-7586542363396718~7302425193
-Test banner ad ID (use this when testing to avoid being banned by AdMob): ca-app-pub-3940256099942544/9214589741
+Test banner ad ID (use this when testing to avoid being banned by AdMob): cca-app-pub-3940256099942544~3347511713
