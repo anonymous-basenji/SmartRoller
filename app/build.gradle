@@ -12,7 +12,14 @@ android {
         minSdk 21
         targetSdk 34
         versionCode 20402
-        versionName "2.4.2 Stable"
+        versionName "2.4.2"
+
+        def envProperties = new Properties()
+        envProperties.load(new FileInputStream(rootProject.file('variables.env')))
+        buildConfigField "String", "AD_MOB_ID", envProperties.getProperty('AD_MOB_ID')
+        buildConfigField "String", "AD_MOB_TEST_ID", envProperties.getProperty('AD_MOB_TEST_ID')
+        resValue "string", "ad_mob_id", envProperties.getProperty('AD_MOB_ID')
+        resValue "string", "ad_mob_test_id", envProperties.getProperty('AD_MOB_TEST_ID')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,6 +32,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-7586542363396718/2050098515"
+        ads:adUnitId="@string/ad_mob_id"
         app:layout_constraintBottom_toTopOf="@id/action_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

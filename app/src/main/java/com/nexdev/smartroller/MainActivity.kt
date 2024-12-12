@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.util.DisplayMetrics
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ import java.util.LinkedList
 open class MainActivity : AppCompatActivity() {
     companion object {
         var dice = DiceX() // declare and initialize dice object that will be used in main activity
+        var currentToast: Toast? = null
     }
 
     private lateinit var binding: ActivityMainBinding // declare main activity binding
@@ -91,6 +93,7 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.add(RollItem(currentPair, 0))
+        showToast("Rolled one pair")
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
@@ -112,6 +115,7 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView that stats area changed
 
         RollItemDatasource.add(RollItem(currentFirstPair, currentSecondPair))
+        showToast("Rolled two pairs")
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
@@ -132,6 +136,7 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.clear() // clears roll item datasource for history recyclerview
+        showToast("Dice reset")
     }
 
     /*private val adSize: AdSize
@@ -160,5 +165,12 @@ open class MainActivity : AppCompatActivity() {
 
         // Start loading Ad in background
         adView.loadAd(adRequest)
+    }
+
+    private fun showToast(message: String?) {
+        currentToast?.cancel()
+
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 }
