@@ -11,13 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.nexdev.smartroller.adapter.ItemAdapter
-import com.nexdev.smartroller.adapter.RollItemAdapter
 import com.nexdev.smartroller.data.Datasource
 import com.nexdev.smartroller.data.RollItemDatasource
 import com.nexdev.smartroller.databinding.ActivityMainBinding
 import com.nexdev.smartroller.model.Item
 import com.nexdev.smartroller.model.RollItem
-import java.util.LinkedList
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 
 open class MainActivity : AppCompatActivity() {
@@ -26,6 +29,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private var currentToast: Toast? = null // declare current toast variable
+    private var adView: AdView? = null // declare adview variable
     private lateinit var binding: ActivityMainBinding // declare main activity binding
 
     // declare main activity recyclerview variables
@@ -52,6 +56,12 @@ open class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.doublePair).setOnClickListener{ outputDoublePair() }
         findViewById<Button>(R.id.clearButton).setOnClickListener{ resetStats() }
         findViewById<Button>(R.id.history_button).setOnClickListener { launchHistory() }
+
+        MobileAds.initialize(this) {}
+        adView = findViewById(R.id.ad_view_container)
+
+        val adRequest = AdRequest.Builder().build()
+        adView?.loadAd(adRequest)
     }
 
     private fun launchHistory() {
@@ -77,6 +87,21 @@ open class MainActivity : AppCompatActivity() {
         RollItemDatasource.add(RollItem(currentPair, 0))
 
         showToast("Single pair rolled!")
+    }
+
+    override fun onPause() {
+        adView?.pause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adView?.resume()
+    }
+
+    override fun onDestroy() {
+        adView?.destroy()
+        super.onDestroy()
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
