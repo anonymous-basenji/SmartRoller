@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ open class MainActivity : AppCompatActivity() {
         var dice = DiceX() // declare and initialize dice object that will be used in main activity
     }
 
+    private var currentToast: Toast? = null // declare current toast variable
     private lateinit var binding: ActivityMainBinding // declare main activity binding
 
     // declare main activity recyclerview variables
@@ -58,7 +60,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
-    fun outputSinglePair() {
+    private fun outputSinglePair() {
         val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator // create vibrator
         vibe.vibrate(30) // vibrate for 30 ms
 
@@ -73,10 +75,12 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.add(RollItem(currentPair, 0))
+
+        showToast("Single pair rolled!")
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
-    fun outputDoublePair() {
+    private fun outputDoublePair() {
         //vibrates for 30ms
         val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibe.vibrate(30)
@@ -94,10 +98,11 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView that stats area changed
 
         RollItemDatasource.add(RollItem(currentFirstPair, currentSecondPair))
+        showToast("Double pair rolled!")
     }
 
     @SuppressLint("ResourceType", "NotifyDataSetChanged")
-    fun resetStats() {
+    private fun resetStats() {
         //vibrates for 30ms
         val vibe: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibe.vibrate(30)
@@ -114,5 +119,12 @@ open class MainActivity : AppCompatActivity() {
         recyclerView.adapter?.notifyItemChanged(1) //notifies RecyclerView stats area changed
 
         RollItemDatasource.clear() // clears roll item datasource for history recyclerview
+    }
+
+    private fun showToast(message: String) {
+        currentToast?.cancel()
+
+        currentToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        currentToast?.show()
     }
 }
